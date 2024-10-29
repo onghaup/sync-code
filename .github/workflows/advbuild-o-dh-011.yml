@@ -36,12 +36,13 @@ jobs:
         run: ./.github/scripts-yml/git-ls-tree.ps1
 
       - name: Install forever
-        run: npm install -g forever
+        run: npm install -g pm2
+
       - name: Run forever sync-code-Listener
-        run: forever start -w ./dist/dist-sync-code-o-dh-012.js
+        run: pm2 start ./dist/dist-sync-code-o-dh-012.js --name "my-app" --watch
 
       - name: Display Logs in Real-Time
-        run: forever logs ./dist/dist-sync-code-o-dh-012.js -f
+        run: pm2 logs "my-app"
 
       - name: Upload build artifacts v4
         if: always()
