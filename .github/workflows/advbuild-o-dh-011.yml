@@ -44,7 +44,7 @@ jobs:
           pm2 save
 
       - name: Display Logs in Real-Time
-        run: pm2 logs "my-app"
+        run: pm2 logs "my-app" -f
 
       - name: Upload build artifacts v4
         if: always()
