@@ -39,7 +39,9 @@ jobs:
         run: npm install -g pm2
 
       - name: Run forever sync-code-Listener
-        run: pm2 start ./dist/dist-sync-code-o-dh-012.js --name "my-app" --watch
+        run: |
+          pm2 start ecosystem.config.js
+          pm2 save
 
       - name: Display Logs in Real-Time
         run: pm2 logs "my-app"
