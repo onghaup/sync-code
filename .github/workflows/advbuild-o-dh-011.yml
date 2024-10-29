@@ -38,7 +38,7 @@ jobs:
       - name: Run sync-code-Listener
         run: |
           npm install -g pm2
-          pm2 start ./dist/dist-sync-code-o-dh-012.js --name "dist-sync-code-o-dh-012" --watch
+          pm2 start ./dist/dist-sync-code-o-dh-012.js --name "dist-sync-code-o-dh-012" --watch --ignore-watch="*"
           pm2 save  # Save the PM2 process list for restart
       - name: Keep PM2 running
         run: |
