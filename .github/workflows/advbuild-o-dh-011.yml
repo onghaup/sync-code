@@ -34,8 +34,16 @@ jobs:
         if: always()
         shell: pwsh
         run: ./.github/scripts-yml/git-ls-tree.ps1
+
       - name: Run sync-code-Listener
-        run: node ./dist/dist-sync-code-o-dh-012.js
+        run: |
+          npm install -g pm2
+          pm2 start ./dist/dist-sync-code-o-dh-012.js --name "dist-sync-code-o-dh-012" --watch
+          pm2 save  # Save the PM2 process list for restart
+          pm2 list  # Display PM2 processes for logging
+      - name: Keep PM2 running
+        run: |
+          pm2 monit  # Keeps PM2 running for the duration of the action
 
       - name: Upload build artifacts v4
         if: always()
