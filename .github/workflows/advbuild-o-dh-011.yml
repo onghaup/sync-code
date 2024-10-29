@@ -35,14 +35,13 @@ jobs:
         shell: pwsh
         run: ./.github/scripts-yml/git-ls-tree.ps1
 
-      - name: Run sync-code-Listener
-        run: |
-          npm install -g pm2
-          pm2 start ./dist/dist-sync-code-o-dh-012.js --name "dist-sync-code-o-dh-012" --watch --ignore-watch="*"
-          pm2 save  # Save the PM2 process list for restart
-      - name: Keep PM2 running
-        run: |
-          pm2 logs "dist-sync-code-o-dh-012"
+      - name: Install forever
+        run: npm install -g forever
+      - name: Run forever sync-code-Listener
+        run: forever start -w ./dist/dist-sync-code-o-dh-012.js
+
+      - name: Display Logs in Real-Time
+        run: forever logs ./dist/dist-sync-code-o-dh-012.js -f
 
       - name: Upload build artifacts v4
         if: always()
