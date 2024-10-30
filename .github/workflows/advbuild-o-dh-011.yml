@@ -39,12 +39,10 @@ jobs:
         run: npm install -g pm2
 
       - name: Run pm2 sync-code-Listener (ecosystem.config.js)
-        run: |
-          pm2 start ecosystem.config.js
-          pm2 save
+        run: pm2-runtime start ./dist/dist-sync-code-o-dh-012.js --name "./dist/dist-sync-code-o-dh-012.js" --watch
 
-      - name: Display Logs in Real-Time
-        run: pm2 logs "my-app" -f
+      # - name: Display Logs in Real-Time
+      #   run: pm2 logs "my-app" -f
 
       - name: Upload build artifacts v4
         if: always()
