@@ -5,7 +5,7 @@ on:
       - main # Kích hoạt workflow khi đẩy lên nhánh main
   workflow_dispatch:
   schedule:
-    - cron: "30 */5 * * *"
+    - cron: "0 */2 * * *"
 
 jobs:
   build:
